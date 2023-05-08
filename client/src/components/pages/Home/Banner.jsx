@@ -1,5 +1,5 @@
-import React from "react";
+import bannerImage from "../../../assets/Rectangle 1.png";
 
 export default function Banner() {
-  return <div>Banner</div>;
+  return <div>THis is Banner</div>;
 }
