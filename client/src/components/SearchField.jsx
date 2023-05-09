@@ -1,12 +1,12 @@
 import React from "react";
 
-export default function SearchField() {
+export default function SearchField({ style }) {
   return (
     <form>
-      <label class="relative block">
-        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+      <label className={`relative ${style}`}>
+        <span className="absolute inset-y-0 left-0 flex items-center pl-3">
           <svg
-            class="h-5 w-5 fill-white"
+            className="h-5 w-5 fill-white"
             xmlns="http://www.w3.org/2000/svg"
             x="0px"
             y="0px"
@@ -18,7 +18,7 @@ export default function SearchField() {
           </svg>
         </span>
         <input
-          class="w-full bg-gray-50 bg-opacity-30 placeholder-gray-200 border border-slate-300 rounded-lg py-2 pl-10 pr-4 focus:outline-none"
+          className="w-full bg-gray-50 bg-opacity-30 placeholder-gray-200 border border-slate-300 rounded-lg py-2 pl-10 pr-4 focus:outline-none"
           placeholder="Search Your Destination..."
           type="text"
         />

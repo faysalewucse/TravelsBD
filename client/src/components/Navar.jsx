@@ -1,8 +1,14 @@
 import SearchField from "./SearchField";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import brand from "../assets/logo.png";
+import PrimaryButton from "./PrimaryButton";
+import { SlClose, SlMenu } from "react-icons/sl";
+import { useState } from "react";
 
 export default function Navar() {
+  const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+
   const navItems = [
     { name: "News", path: "/news" },
     { name: "Destination", path: "/destination" },
@@ -11,10 +17,14 @@ export default function Navar() {
   ];
   return (
     <div>
-      <div className="max-w-7xl mx-auto flex text-white items-center p-5 justify-between">
+      <div className="max-w-7xl mx-auto flex text-white items-center p-5 md:p-10 justify-between">
         <img className="w-24" src={brand} alt="Brand" />
-        <SearchField />
-        <nav className="flex gap-10  text-lg items-center">
+        <SearchField style={"hidden md:block"} />
+        <nav
+          className={`flex flex-col md:flex-row md:relative bg-white md:bg-transparent absolute ${
+            open ? "top-0" : "-top-full"
+          } right-0 md:w-fit w-full gap-5 transition duration-200 md:h-fit h-[50vh] md:gap-10 md:p-0 rounded-b-xl text-black md:text-white p-10 text-lg items-center`}
+        >
           {navItems.map((item, index) => (
             <NavLink
               className={({ isActive }) =>
@@ -26,13 +36,19 @@ export default function Navar() {
               {item.name}
             </NavLink>
           ))}
-          <NavLink
-            className="hover:text-black hover:bg-primary2 transition duration-300 text-black font-normal bg-primary rounded px-6 py-2 text-base"
-            to={"/login"}
-          >
-            LOGIN
-          </NavLink>
+          <PrimaryButton
+            text={"LOGIN"}
+            style={"text-lg"}
+            onClickHandler={() => navigate("/login")}
+          />
         </nav>
+        <div onClick={() => setOpen(!open)} className="md:hidden text-2xl">
+          {open ? (
+            <SlClose className="text-black absolute right-5 top-5 text-3xl" />
+          ) : (
+            <SlMenu className="text-white" />
+          )}
+        </div>
       </div>
     </div>
   );
